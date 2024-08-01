@@ -1,0 +1,48 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Función recursiva para generar subconjuntos
+void generateSubsets(vector<int>& nums, int index, vector<int>& subset, vector<vector<int>>& result) {
+    // Agregamos el subconjunto actual al resultado
+    result.push_back(subset);
+
+    // Iteramos sobre los elementos restantes
+    for (int i = index; i < nums.size(); ++i) {
+        // Agregamos el elemento actual al subconjunto
+        subset.push_back(nums[i]);
+        // Llamamos recursivamente a la función para generar subconjuntos con el elemento actual
+        generateSubsets(nums, i + 1, subset, result);
+        // Retiramos el elemento actual para generar otros subconjuntos sin él
+        subset.pop_back();
+    }
+}
+
+// Función para generar todos los subconjuntos
+vector<vector<int>> generateAllSubsets(vector<int>& nums) {
+    vector<vector<int>> result;
+    vector<int> subset;
+
+    // Llamamos a la función recursiva para generar subconjuntos
+    generateSubsets(nums, 0, subset, result);
+
+    return result;
+}
+
+int main() {
+    vector<int> nums = {1, 2, 3};
+    vector<vector<int>> subsets = generateAllSubsets(nums);
+
+    // Imprimimos los subconjuntos generados
+    cout << "Subconjuntos generados:" << endl;
+    for (const auto& subset : subsets) {
+        cout << "[";
+        for (int num : subset) {
+            cout << num << " ";
+        }
+        cout << "]" << endl;
+    }
+
+    return 0;
+}
