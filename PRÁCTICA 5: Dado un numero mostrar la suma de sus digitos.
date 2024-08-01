@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+
+int sumaDeDigitos(int n) {
+    return (n == 0) ? 0 : n % 10 + sumaDeDigitos(n / 10);
+}
+
+int main() {
+    int n;
+    cin >> n;
+    cout << sumaDeDigitos(n) << endl;
+    return 0;
+}
