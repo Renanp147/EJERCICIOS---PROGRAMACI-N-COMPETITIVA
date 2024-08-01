@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<vector<int>> rotateMatrix(vector<vector<int>>& matrix) {
+    int n = matrix.size();
+
+    // Creamos una nueva matriz para almacenar la matriz rotada
+    vector<vector<int>> rotated(n, vector<int>(n));
+
+    // Rotamos la matriz
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            rotated[j][n - 1 - i] = matrix[i][j];
+        }
+    }
+
+    // Devolvemos la matriz rotada
+    return rotated;
+}
+
+int main() {
+    // Ejemplo de una matriz cuadrada de 3x3
+    vector<vector<int>> matrix = {{1, 2, 3},
+                                   {4, 5, 6},
+                                   {7, 8, 9}};
+
+    // Rotamos la matriz 90 grados en sentido horario
+    vector<vector<int>> rotatedMatrix = rotateMatrix(matrix);
+
+    // Imprimimos la matriz rotada
+    cout << "Matriz Rotada 90 grados en sentido horario:" << endl;
+    for (const auto& row : rotatedMatrix) {
+        for (int element : row) {
+            cout << element << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
