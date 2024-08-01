@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Función para rotar la matriz 90 grados en sentido horario
+vector<vector<int>> rotateMatrix(vector<vector<int>>& matrix) {
+    int n = matrix.size();
+    vector<vector<int>> rotatedMatrix(n, vector<int>(n));
+    
+    // Rellenar la matriz rotada
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            rotatedMatrix[j][n - 1 - i] = matrix[i][j];
+        }
+    }
+
+    return rotatedMatrix;
+}
+
+int main() {
+    vector<vector<int>> matrix = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    vector<vector<int>> rotatedMatrix = rotateMatrix(matrix);
+
+    cout << "Matriz rotada 90 grados en sentido horario:" << endl;
+    for (const auto& row : rotatedMatrix) {
+        for (int elem : row) {
+            cout << elem << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
